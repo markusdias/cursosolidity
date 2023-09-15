@@ -1,13 +1,11 @@
 /*
 SPDX-License-Identifier: CC-BY-4.0
 (c) Desenvolvido por Jeff Prestes
-Editado por Marcus Dias
 This work is licensed under a Creative Commons Attribution 4.0 International License.
 */
 
 /*
 Somente o locatário deve pagar aluguel 
---> 0x0ada48e70fce51f4f14d3c65467736785fceb0741e6cf17a9c10f4f707b8623d
 */
 
 pragma solidity 0.8.19;
@@ -25,7 +23,7 @@ contract Aluguel {
     3 - 04/2020 = true
     */
     address payable public contaLocador;
-    address public owner;
+    address public locatarioad;
 
     constructor(    string memory _nomeLocador, 
                     string memory _nomeLocatario, 
@@ -35,7 +33,7 @@ contract Aluguel {
         locatario = _nomeLocatario;
         valor = _valorDoAluguel;
         contaLocador = _contaLocador;
-        owner = msg.sender;
+        locatarioad = msg.sender;
     }
  
     function valorAtualDoAluguel() public view returns (uint256) {
@@ -74,7 +72,7 @@ contract Aluguel {
     
     function receberPagamento() public payable {
         require(msg.value>=valor, "Valor insuficiente");
-        require(msg.sender == owner, "Somente o locatario pode pagar");
+        require(msg.sender == locatarioad, "Somente o locatario pode pagar");
         contaLocador.transfer(msg.value);
         statusPagamento.push(true);
     }
