@@ -6,6 +6,7 @@ This work is licensed under a Creative Commons Attribution 4.0 International Lic
 
 /*
 Somente o locatário deve pagar aluguel 
+--> 0x04C821B1Dc52E556D875228B671E3B6c7f93d869
 */
 
 pragma solidity 0.8.19;
@@ -23,7 +24,7 @@ contract Aluguel {
     3 - 04/2020 = true
     */
     address payable public contaLocador;
-    address public locatarioad;
+    address public locatarioAd;
 
     constructor(    string memory _nomeLocador, 
                     string memory _nomeLocatario, 
@@ -33,7 +34,7 @@ contract Aluguel {
         locatario = _nomeLocatario;
         valor = _valorDoAluguel;
         contaLocador = _contaLocador;
-        locatarioad = msg.sender;
+        locatarioAd = msg.sender;
     }
  
     function valorAtualDoAluguel() public view returns (uint256) {
@@ -72,7 +73,7 @@ contract Aluguel {
     
     function receberPagamento() public payable {
         require(msg.value>=valor, "Valor insuficiente");
-        require(msg.sender == locatarioad, "Somente o locatario pode pagar");
+        require(msg.sender == locatarioAd, "Somente o locatario pode pagar");
         contaLocador.transfer(msg.value);
         statusPagamento.push(true);
     }
