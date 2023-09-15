@@ -6,6 +6,7 @@ This work is licensed under a Creative Commons Attribution 4.0 International Lic
 
 /*
 Somente o locatário deve pagar aluguel 
+--> 0x0ada48e70fce51f4f14d3c65467736785fceb0741e6cf17a9c10f4f707b8623d
 */
 
 pragma solidity 0.8.19;
