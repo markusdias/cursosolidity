@@ -74,7 +74,7 @@ contract Aluguel {
     
     function receberPagamento() public payable {
         require(msg.value>=valor, "Valor insuficiente");
-        require(msg.sender == contaLocador, "Somente o locatario pode pagar");
+        require(msg.sender == owner, "Somente o locatario pode pagar");
         contaLocador.transfer(msg.value);
         statusPagamento.push(true);
     }
